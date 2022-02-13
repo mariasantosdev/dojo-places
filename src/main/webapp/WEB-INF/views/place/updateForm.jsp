@@ -4,7 +4,7 @@
 <br/>
 <br/>
 
-<form:form modelAttribute="placeEditForm" method="post" action="update/local/${code}">
+<form:form modelAttribute="placeEditForm" method="post" action="/update/local/${code}">
 
     <label>Nome:</label>
     <form:input path="name"/>

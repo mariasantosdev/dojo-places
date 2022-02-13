@@ -65,6 +65,6 @@ public class PlaceController {
 
         place.update(placeEditForm);
         model.addAttribute("code", code);
-        return "redirect:/create/local/form";
+        return "redirect:/places";
     }
 }

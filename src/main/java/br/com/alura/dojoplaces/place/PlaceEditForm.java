@@ -21,6 +21,9 @@ public class PlaceEditForm {
     @NotBlank
     private String city;
 
+    @Deprecated
+    public PlaceEditForm() {}
+
     public PlaceEditForm(Place place) {
         this.id = place.getId();
         this.name = place.getName();

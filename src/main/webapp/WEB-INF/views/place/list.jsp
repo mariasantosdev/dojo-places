@@ -21,12 +21,12 @@
 
     <c:forEach items="${places}" var="place">
         <tr>
-            <td class="text-center">${place.id} </td>
-            <td class="text-center">${place.name} </td>
-            <td class="text-center">${place.code}</td>
-            <td class="text-center">${place.neighborhood}</td>
-            <td class="text-center">${place.city}</td>
-            <td class="text-center"><a class="btn btn-link aw-link-panel" href="/update/local/form/${place.code}">Editar</a></td>
+            <td class="text-center">${place.id()} </td>
+            <td class="text-center">${place.name()} </td>
+            <td class="text-center">${place.code()}</td>
+            <td class="text-center">${place.neighborhood()}</td>
+            <td class="text-center">${place.city()}</td>
+            <td class="text-center"><a class="btn btn-link aw-link-panel" href="/update/local/form/${place.code()}">Editar</a></td>
         </tr>
     </c:forEach>
     </tbody>

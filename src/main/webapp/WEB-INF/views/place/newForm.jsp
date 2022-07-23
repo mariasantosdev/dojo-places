@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8"/>
-        <title>Cadastrar lugar</title>
+        <title>Cadastrar lugares</title>
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
     </head>
 
@@ -49,6 +49,7 @@
                     <form:button class="btn btn-success">Cadastrar</form:button>
                 </div>
             </div>
+
         </form:form>
     </body>
 </html>

@@ -13,6 +13,8 @@
 
         <div class="col-sm-offset--1 col-sm-10">
             <h1>Lista de lugares</h1>
+            <a class="btn btn-primary" href="/create/local/form">Novo lugar</a><br/><br/><br/>
+        </div>
         </div>
 
         <div class="panel-body">

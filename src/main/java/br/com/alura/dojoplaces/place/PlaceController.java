@@ -43,7 +43,7 @@ public class PlaceController {
         Place place = placeForm.toModel();
         placeRepository.save(place);
 
-        return "/place/newForm";
+        return "redirect:/places";
     }
 
     @GetMapping("update/local/form/{code}")

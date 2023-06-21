@@ -1,4 +1,4 @@
-package br.com.alura.dojoplaces.place.utils;
+package br.com.alura.dojoplaces.utils;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;

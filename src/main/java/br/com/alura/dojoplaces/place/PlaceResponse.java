@@ -1,8 +1,6 @@
 package br.com.alura.dojoplaces.place;
 
-import br.com.alura.dojoplaces.place.utils.OffsetDateTimeUtil;
-
-import static br.com.alura.dojoplaces.place.utils.OffsetDateTimeUtil.formatOffsetDateTime;
+import static br.com.alura.dojoplaces.utils.OffsetDateTimeUtil.formatOffsetDateTime;
 
 public record PlaceResponse (
     Long id,

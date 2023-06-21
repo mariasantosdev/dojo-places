@@ -1,5 +1,6 @@
 package br.com.alura.dojoplaces.place.utils;
 
+import br.com.alura.dojoplaces.utils.OffsetDateTimeUtil;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;

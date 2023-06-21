@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -16,9 +18,24 @@ import java.util.List;
 public class PlaceController {
 
     private final PlaceRepository placeRepository;
+    private final PlaceNewFormValidator placeNewFormValidator;
 
-    public PlaceController(PlaceRepository placeRepository) {
+    private final PlaceEditFormValidator editPlaceValidator;
+
+    public PlaceController(PlaceRepository placeRepository, PlaceNewFormValidator placeNewFormValidator, PlaceEditFormValidator editPlaceValidator) {
         this.placeRepository = placeRepository;
+        this.placeNewFormValidator = placeNewFormValidator;
+        this.editPlaceValidator = editPlaceValidator;
+    }
+
+    @InitBinder("placeNewForm")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(placeNewFormValidator);
+    }
+
+    @InitBinder("placeEditForm")
+    public void init(WebDataBinder binder) {
+        binder.addValidators(editPlaceValidator);
     }
 
     @GetMapping("/places")

@@ -27,6 +27,7 @@
                     <th class="text-center col-md-2">Data criação</th>
                     <th class="text-center col-md-2">Dias desde a última atualização</th>
                     <th class="text-center col-md-2"></th>
+                    <th class="text-center col-md-2"></th>
                 </tr>
                 </thead>
                 <tbody>

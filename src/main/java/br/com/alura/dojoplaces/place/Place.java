@@ -3,15 +3,13 @@ package br.com.alura.dojoplaces.place;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 
 @Entity
 public class Place {
@@ -23,6 +21,7 @@ public class Place {
     private String name;
     @NotBlank
     @Pattern(regexp = "[a-zA-Z0-9]+")
+    @Column(unique = true)
     private String code;
     @Size(max = 100)
     @NotBlank
@@ -70,8 +69,8 @@ public class Place {
         return createdAt;
     }
 
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
+    public Optional<OffsetDateTime> getUpdatedAt() {
+        return Optional.ofNullable(updatedAt);
     }
 
     public void update(PlaceEditForm placeEditForm) {

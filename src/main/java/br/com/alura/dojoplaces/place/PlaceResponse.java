@@ -11,6 +11,6 @@ public record PlaceResponse (
 
     public static PlaceResponse convert(Place place) {
         return new PlaceResponse(place.getId(), place.getName(), place.getCode(), formatOffsetDateTime(place.getCreatedAt()),
-                formatOffsetDateTime(place.getUpdatedAt()));
+                formatOffsetDateTime(place.getUpdatedAt().orElse(null)));
     }
 }

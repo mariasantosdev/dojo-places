@@ -19,10 +19,10 @@ public class PlaceController {
 
     private final PlaceRepository placeRepository;
     private final PlaceNewFormValidator placeNewFormValidator;
-
     private final PlaceEditFormValidator editPlaceValidator;
 
-    public PlaceController(PlaceRepository placeRepository, PlaceNewFormValidator placeNewFormValidator, PlaceEditFormValidator editPlaceValidator) {
+    public PlaceController(PlaceRepository placeRepository, PlaceNewFormValidator placeNewFormValidator,
+                           PlaceEditFormValidator editPlaceValidator) {
         this.placeRepository = placeRepository;
         this.placeNewFormValidator = placeNewFormValidator;
         this.editPlaceValidator = editPlaceValidator;
@@ -52,7 +52,7 @@ public class PlaceController {
     }
 
     @PostMapping("/create/local")
-    public String create(@Valid PlaceNewForm placeForm, BindingResult bindingResult, Model model) {
+    public String create(@Valid PlaceNewForm placeForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return createLocalForm(placeForm);
         }
@@ -82,6 +82,14 @@ public class PlaceController {
 
         place.update(placeEditForm);
         model.addAttribute("code", code);
+        return "redirect:/places";
+    }
+
+    @PostMapping("/delete/local/{code}")
+    @Transactional
+    public String delete(@PathVariable String code, Model model) {
+        Place place = placeRepository.findByCode(code).orElseThrow(NotFoundException::new);
+        placeRepository.delete(place);
         return "redirect:/places";
     }
 }

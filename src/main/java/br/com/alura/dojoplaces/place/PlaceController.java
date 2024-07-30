@@ -1,6 +1,7 @@
 package br.com.alura.dojoplaces.place;
 
 import br.com.alura.dojoplaces.exception.NotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -64,10 +66,10 @@ public class PlaceController {
     }
 
     @GetMapping("update/local/form/{code}")
-    public String updateLocalForm(@PathVariable String code, Model model) {
-        Place place = placeRepository.findByCode(code).orElseThrow(NotFoundException::new);
+    public String updateLocalForm(@PathVariable String code, PlaceEditForm placeEditForm, Model model) {
+        Place place = placeRepository.findByCode(code).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        model.addAttribute("placeEditForm", new PlaceEditForm(place));
+        model.addAttribute("placeEditView", new PlaceEditView(place));
         return "place/updateForm";
     }
 
@@ -76,7 +78,7 @@ public class PlaceController {
     public String update(@PathVariable String code, @Valid PlaceEditForm placeEditForm,
                          BindingResult result, Model model) {
         if(result.hasErrors()) {
-            return updateLocalForm(code,model);
+            return updateLocalForm(code, placeEditForm, model);
         }
         Place place = placeRepository.findByCode(code).orElseThrow(NotFoundException::new);
 

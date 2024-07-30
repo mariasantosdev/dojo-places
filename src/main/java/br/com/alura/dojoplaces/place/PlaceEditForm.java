@@ -9,16 +9,16 @@ public class PlaceEditForm {
     @NotNull
     private Long id;
     @Size(max = 100)
-    @NotBlank
+    @NotBlank(message = "Nome é obrigatório")
     private String name;
-    @NotBlank
-    @Pattern(regexp = "[a-zA-Z0-9]+")
+    @NotBlank(message = "Código é obrigatório")
+    @Pattern(regexp = "[a-zA-Z0-9]+", message = "Código deve conter apenas letras e números")
     private String code;
     @Size(max = 100)
-    @NotBlank
+    @NotBlank(message = "Bairro é obrigatório")
     private String neighborhood;
     @Size(max = 100)
-    @NotBlank
+    @NotBlank(message = "Cidade é obrigatória")
     private String city;
 
     @Deprecated

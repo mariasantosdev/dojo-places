@@ -7,10 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -87,9 +84,9 @@ public class PlaceController {
         return "redirect:/places";
     }
 
-    @PostMapping("/delete/local/{code}")
+    @DeleteMapping("/delete/local/{code}")
     @Transactional
-    public String delete(@PathVariable String code, Model model) {
+    public String delete(@PathVariable String code) {
         Place place = placeRepository.findByCode(code).orElseThrow(NotFoundException::new);
         placeRepository.delete(place);
         return "redirect:/places";

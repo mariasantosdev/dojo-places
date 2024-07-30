@@ -12,6 +12,12 @@
 
         <form:form class="form-horizontal" modelAttribute="placeNewForm" method="post" action="/create/local">
 
+            <h3>Preencher por CEP: </h3>
+            <label>
+                Cep:
+                <input type="text" id="cep" />
+            </label>
+
             <div class="panel-body">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Nome:</label>
@@ -52,6 +58,22 @@
 
         </form:form>
     </body>
+    <script>
+        const cepInput = document.getElementById("cep");
+        cepInput.addEventListener("input", (e) => {
+            e.preventDefault();
+            const cep = cepInput.value;
+            if (cep.length == 8) {
+                fetch('https://viacep.com.br/ws/'+ cep +'/json/')
+                    .then(cep => cep.json())
+                    .then(cep => {
+                        document.getElementById('city').value = cep.localidade;
+                        document.getElementById('neighborhood').value = cep.logradouro;
+                    }).catch(err => console.log(err));
+            }
+
+        })
+    </script>
 </html>
 
 <script src="/js/bootstrap.min.js"></script>
